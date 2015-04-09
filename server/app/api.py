@@ -1665,7 +1665,7 @@ class NotificationsAPI(APIResource):
         
         notification = models.Notification(
             message=data['message'],
-            url=data['url'],
+            URL=data['url'],
             course=course.key,
             expiration=data['expiration'])
         
