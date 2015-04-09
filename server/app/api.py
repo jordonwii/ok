@@ -1671,6 +1671,12 @@ class NotificationsAPI(APIResource):
         
         notification.put()
     
-    def read(self, obj, user, data):
-        
-        pass
+    def read(self, notification, user, data):
+        receipt = models.Receipts.query(
+            models.Receipts.user == user.key, 
+            models.Receipts.notification == notification.key,
+            models.Receipts.read == True)
+
+        if len(receipt.fetch(1)) == 0:
+            recept = models.Receipt(user=user.key, notification=notification.key, read=True)
+            receipt.put()
