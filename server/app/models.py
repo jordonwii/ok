@@ -1113,13 +1113,6 @@ class FinalSubmission(Base):
         self.submitter = self.submission.get().submitter
 
 
-class Receipts(Base):
-    """
-    Read receipts for notifications
-    """
-    user = ndb.KeyProperty(User)
-    notification = ndb.KeyProperty(Notification)
-    read = ndb.BooleanProperty()
 
 
 class Notification(Base):
@@ -1142,3 +1135,11 @@ class Notification(Base):
                 return True
             return user.key in course.staff
         return False
+
+class Receipts(Base):
+    """
+    Read receipts for notifications
+    """
+    user = ndb.KeyProperty(User)
+    notification = ndb.KeyProperty(Notification)
+    read = ndb.BooleanProperty()
